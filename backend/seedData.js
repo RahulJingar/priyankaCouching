@@ -13,14 +13,14 @@ const seedData = async () => {
       price: 1999,
       thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600',
       category: 'Mathematics',
-      previewVideoId: 'NybHckSEQBI',
+      previewVideoId: 'NybHckSEQBI', previewType: 'youtube',
       lessons: [
-        { title: 'Real Numbers - Introduction', videoId: 'NybHckSEQBI', duration: '45 min' },
-        { title: 'Polynomials - Basics & Advanced', videoId: 'mAlSbSXUnRg', duration: '52 min' },
-        { title: 'Linear Equations in Two Variables', videoId: 'Vc9oCFMFBMk', duration: '48 min' },
-        { title: 'Quadratic Equations', videoId: 'IlNAJl36-10', duration: '55 min' },
-        { title: 'Arithmetic Progressions', videoId: 'gua96ju_FBk', duration: '40 min' },
-        { title: 'Triangles & Similarity', videoId: 'KIMqHMnFMRY', duration: '60 min' },
+        { title: 'Real Numbers - Introduction', videoId: 'NybHckSEQBI', videoType: 'youtube', duration: '45 min' },
+        { title: 'Polynomials - Basics & Advanced', videoId: 'mAlSbSXUnRg', videoType: 'youtube', duration: '52 min' },
+        { title: 'Linear Equations in Two Variables', videoId: 'Vc9oCFMFBMk', videoType: 'youtube', duration: '48 min' },
+        { title: 'Quadratic Equations', videoId: 'IlNAJl36-10', videoType: 'youtube', duration: '55 min' },
+        { title: 'Arithmetic Progressions', videoId: 'gua96ju_FBk', videoType: 'youtube', duration: '40 min' },
+        { title: 'Triangles & Similarity', videoId: 'KIMqHMnFMRY', videoType: 'youtube', duration: '60 min' },
       ]
     },
     {
@@ -29,14 +29,14 @@ const seedData = async () => {
       price: 2499,
       thumbnail: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=600',
       category: 'Physics',
-      previewVideoId: 'ZM8ECpBuQYE',
+      previewVideoId: 'ZM8ECpBuQYE', previewType: 'youtube',
       lessons: [
-        { title: 'Units & Measurements', videoId: 'ZM8ECpBuQYE', duration: '38 min' },
-        { title: 'Motion in a Straight Line', videoId: 'wWnfJ0-xXRE', duration: '50 min' },
-        { title: 'Laws of Motion - Newton', videoId: 'kKKM8Y-u7ds', duration: '55 min' },
-        { title: 'Work, Energy & Power', videoId: 'w4QFJb9a8vo', duration: '48 min' },
-        { title: 'Gravitation', videoId: 'MTY1Kje0yLg', duration: '45 min' },
-        { title: 'Electrostatics - Coulombs Law', videoId: 'x1-SibwIPM4', duration: '52 min' },
+        { title: 'Units & Measurements', videoId: 'ZM8ECpBuQYE', videoType: 'youtube', duration: '38 min' },
+        { title: 'Motion in a Straight Line', videoId: 'wWnfJ0-xXRE', videoType: 'youtube', duration: '50 min' },
+        { title: 'Laws of Motion - Newton', videoId: 'kKKM8Y-u7ds', videoType: 'youtube', duration: '55 min' },
+        { title: 'Work, Energy & Power', videoId: 'w4QFJb9a8vo', videoType: 'youtube', duration: '48 min' },
+        { title: 'Gravitation', videoId: 'MTY1Kje0yLg', videoType: 'youtube', duration: '45 min' },
+        { title: 'Electrostatics - Coulombs Law', videoId: 'x1-SibwIPM4', videoType: 'youtube', duration: '52 min' },
       ]
     },
     {
@@ -45,13 +45,13 @@ const seedData = async () => {
       price: 2999,
       thumbnail: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600',
       category: 'Chemistry',
-      previewVideoId: 'FSyAehMdpyI',
+      previewVideoId: 'FSyAehMdpyI', previewType: 'youtube',
       lessons: [
-        { title: 'Some Basic Concepts of Chemistry', videoId: 'FSyAehMdpyI', duration: '42 min' },
-        { title: 'Structure of Atom', videoId: 'thnDxFdkzZs', duration: '58 min' },
-        { title: 'Chemical Bonding', videoId: 'QXT4OLQX1AE', duration: '65 min' },
-        { title: 'Thermodynamics', videoId: 'SZorAJ4I-sA', duration: '50 min' },
-        { title: 'Organic Chemistry - Basics', videoId: 'bSMx0NS0XfY', duration: '55 min' },
+        { title: 'Some Basic Concepts of Chemistry', videoId: 'FSyAehMdpyI', videoType: 'youtube', duration: '42 min' },
+        { title: 'Structure of Atom', videoId: 'thnDxFdkzZs', videoType: 'youtube', duration: '58 min' },
+        { title: 'Chemical Bonding', videoId: 'QXT4OLQX1AE', videoType: 'youtube', duration: '65 min' },
+        { title: 'Thermodynamics', videoId: 'SZorAJ4I-sA', videoType: 'youtube', duration: '50 min' },
+        { title: 'Organic Chemistry - Basics', videoId: 'bSMx0NS0XfY', videoType: 'youtube', duration: '55 min' },
       ]
     },
     {
@@ -60,12 +60,12 @@ const seedData = async () => {
       price: 999,
       thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600',
       category: 'English',
-      previewVideoId: 'fgRbqf_5tnQ',
+      previewVideoId: 'fgRbqf_5tnQ', previewType: 'youtube',
       lessons: [
-        { title: 'Parts of Speech', videoId: 'fgRbqf_5tnQ', duration: '35 min' },
-        { title: 'Tenses - Complete Guide', videoId: 'Vc9oCFMFBMk', duration: '48 min' },
-        { title: 'Active & Passive Voice', videoId: 'NybHckSEQBI', duration: '40 min' },
-        { title: 'Essay Writing Techniques', videoId: 'mAlSbSXUnRg', duration: '45 min' },
+        { title: 'Parts of Speech', videoId: 'fgRbqf_5tnQ', videoType: 'youtube', duration: '35 min' },
+        { title: 'Tenses - Complete Guide', videoId: 'Vc9oCFMFBMk', videoType: 'youtube', duration: '48 min' },
+        { title: 'Active & Passive Voice', videoId: 'NybHckSEQBI', videoType: 'youtube', duration: '40 min' },
+        { title: 'Essay Writing Techniques', videoId: 'mAlSbSXUnRg', videoType: 'youtube', duration: '45 min' },
       ]
     },
     {
@@ -74,13 +74,13 @@ const seedData = async () => {
       price: 2799,
       thumbnail: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600',
       category: 'Biology',
-      previewVideoId: 'URUJD5NEXC8',
+      previewVideoId: 'URUJD5NEXC8', previewType: 'youtube',
       lessons: [
-        { title: 'Cell - The Unit of Life', videoId: 'URUJD5NEXC8', duration: '55 min' },
-        { title: 'Biomolecules', videoId: 'H8WJ2KENlK0', duration: '60 min' },
-        { title: 'Photosynthesis', videoId: 'uixA8ZXx0KU', duration: '50 min' },
-        { title: 'Human Physiology - Digestion', videoId: 'Og5xAdC8EUI', duration: '58 min' },
-        { title: 'Genetics & Evolution', videoId: 'CBezq1fFUEA', duration: '65 min' },
+        { title: 'Cell - The Unit of Life', videoId: 'URUJD5NEXC8', videoType: 'youtube', duration: '55 min' },
+        { title: 'Biomolecules', videoId: 'H8WJ2KENlK0', videoType: 'youtube', duration: '60 min' },
+        { title: 'Photosynthesis', videoId: 'uixA8ZXx0KU', videoType: 'youtube', duration: '50 min' },
+        { title: 'Human Physiology - Digestion', videoId: 'Og5xAdC8EUI', videoType: 'youtube', duration: '58 min' },
+        { title: 'Genetics & Evolution', videoId: 'CBezq1fFUEA', videoType: 'youtube', duration: '65 min' },
       ]
     },
     {
@@ -89,13 +89,13 @@ const seedData = async () => {
       price: 1499,
       thumbnail: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600',
       category: 'Computer Science',
-      previewVideoId: '_uQrJ0TkZlc',
+      previewVideoId: '_uQrJ0TkZlc', previewType: 'youtube',
       lessons: [
-        { title: 'Python Introduction & Setup', videoId: '_uQrJ0TkZlc', duration: '30 min' },
-        { title: 'Variables & Data Types', videoId: 'kqtD5dpn9C8', duration: '40 min' },
-        { title: 'Control Flow - If/Else & Loops', videoId: 'DZwmZ8Usvnk', duration: '45 min' },
-        { title: 'Functions & Modules', videoId: '9Os0o3wzS_I', duration: '50 min' },
-        { title: 'Object Oriented Programming', videoId: 'JeznW_7DlB0', duration: '60 min' },
+        { title: 'Python Introduction & Setup', videoId: '_uQrJ0TkZlc', videoType: 'youtube', duration: '30 min' },
+        { title: 'Variables & Data Types', videoId: 'kqtD5dpn9C8', videoType: 'youtube', duration: '40 min' },
+        { title: 'Control Flow - If/Else & Loops', videoId: 'DZwmZ8Usvnk', videoType: 'youtube', duration: '45 min' },
+        { title: 'Functions & Modules', videoId: '9Os0o3wzS_I', videoType: 'youtube', duration: '50 min' },
+        { title: 'Object Oriented Programming', videoId: 'JeznW_7DlB0', videoType: 'youtube', duration: '60 min' },
       ]
     }
   ];
