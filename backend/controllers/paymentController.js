@@ -3,11 +3,10 @@ const crypto = require('crypto');
 const Course = require('../models/Course');
 const User = require('../models/User');
 
-const isRazorpayConfigured = () => {
-  const key = process.env.RAZORPAY_KEY_ID || '';
-  const secret = process.env.RAZORPAY_KEY_SECRET || '';
-  return key.startsWith('rzp_') && !key.includes('xxx') && secret.length > 10 && !secret.includes('xxx');
-};
+const getRazorpay = () => new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
+});
 
 // Create Razorpay order
 const createOrder = async (req, res) => {
@@ -19,26 +18,11 @@ const createOrder = async (req, res) => {
     if (user.enrolledCourses.map(id => id.toString()).includes(course._id.toString()))
       return res.status(400).json({ message: 'Already enrolled in this course' });
 
-    // Demo mode - Razorpay keys nahi hain
-    if (!isRazorpayConfigured()) {
-      return res.json({
-        demoMode: true,
-        courseId: course._id,
-        courseName: course.title,
-        amount: course.price * 100,
-        currency: 'INR'
-      });
-    }
-
-    const razorpay = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET
-    });
-
+    const razorpay = getRazorpay();
     const order = await razorpay.orders.create({
       amount: course.price * 100,
       currency: 'INR',
-      receipt: `receipt_${course._id}_${req.user.id}`,
+      receipt: `rcpt_${Date.now()}`,
       notes: { courseId: course._id.toString(), userId: req.user.id.toString() }
     });
 
@@ -60,6 +44,10 @@ const verifyPayment = async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, courseId } = req.body;
 
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !courseId)
+      return res.status(400).json({ message: 'Missing payment details' });
+
+    // Signature verify karo
     const sign = razorpay_order_id + '|' + razorpay_payment_id;
     const expectedSign = crypto
       .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
@@ -67,11 +55,28 @@ const verifyPayment = async (req, res) => {
       .digest('hex');
 
     if (expectedSign !== razorpay_signature)
-      return res.status(400).json({ message: 'Payment verification failed' });
+      return res.status(400).json({ message: 'Invalid payment signature. Payment not verified.' });
+
+    // Razorpay se payment status confirm karo
+    const razorpay = getRazorpay();
+    const payment = await razorpay.payments.fetch(razorpay_payment_id);
+
+    console.log('Payment status:', payment.status, '| Amount:', payment.amount, '| Method:', payment.method);
+
+    if (payment.status !== 'captured' && payment.status !== 'authorized')
+      return res.status(400).json({ message: `Payment not completed. Status: ${payment.status}` });
+
+    // Order verify karo
+    const order = await razorpay.orders.fetch(razorpay_order_id);
+    if (order.status !== 'paid')
+      return res.status(400).json({ message: 'Order not paid yet.' });
 
     // Enroll student
     const course = await Course.findById(courseId);
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+
     const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
     if (!user.enrolledCourses.map(id => id.toString()).includes(course._id.toString())) {
       user.enrolledCourses.push(course._id);

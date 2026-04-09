@@ -7,7 +7,7 @@ const seedData = require('./seedData');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: '*', credentials: false }));
 app.use(express.json());
 
 // Serve uploaded files
