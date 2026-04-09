@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api/axios';
+import api, { getMediaUrl } from '../api/axios';
 import { IndianRupee, Users, BookOpen, TrendingUp, Plus, Trash2, Eye, Upload, Video, ChevronDown, ChevronUp, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -131,7 +131,7 @@ export default function TeacherDashboard() {
   const { courses = [], totalRevenue = 0, totalStudents = 0 } = data || {};
 
   return (
-    <div style={styles.page}>
+    <div className="dashboard-page">
       <div style={styles.header}>
         <div>
           <h1 style={styles.title}>Teacher Dashboard</h1>
@@ -143,7 +143,7 @@ export default function TeacherDashboard() {
       </div>
 
       {/* Stats */}
-      <div style={styles.statsGrid}>
+      <div className="stats-grid">
         {[
           { icon: <IndianRupee size={24} color="#6c63ff" />, label: 'Total Revenue', value: `₹${totalRevenue.toLocaleString('en-IN')}`, bg: '#f0eeff' },
           { icon: <Users size={24} color="#10b981" />, label: 'Total Students', value: totalStudents, bg: '#ecfdf5' },
@@ -165,7 +165,7 @@ export default function TeacherDashboard() {
         <div style={styles.formCard}>
           <h2 style={styles.formTitle}>Create New Course</h2>
           <form onSubmit={handleCreateCourse} style={styles.form}>
-            <div style={styles.formGrid}>
+            <div className="form-grid-2">
               <div style={styles.field}>
                 <label style={styles.label}>Course Title *</label>
                 <input value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} placeholder="e.g. Complete Math for Class 10" style={styles.input} />
@@ -240,8 +240,8 @@ export default function TeacherDashboard() {
           return (
             <div key={course._id} style={styles.courseBlock}>
               {/* Course Row */}
-              <div style={styles.courseRow}>
-                <img src={course.thumbnail?.startsWith('/uploads') ? `http://localhost:5000${course.thumbnail}` : course.thumbnail} alt="" style={styles.rowThumb} />
+              <div className="course-row">
+                <img src={getMediaUrl(course.thumbnail)} alt="" style={styles.rowThumb} />
                 <div style={{ flex: 3 }}>
                   <div style={styles.rowTitle}>{course.title}</div>
                   <div style={styles.rowMeta}>{course.category} • {course.lessons?.length || 0} lessons • {course.enrolledStudents?.length || 0} students</div>
@@ -280,7 +280,7 @@ export default function TeacherDashboard() {
                   {/* Add Lesson Form */}
                   <div style={styles.addLessonForm}>
                     <h4 style={styles.lessonsHeading}>Add New Lesson</h4>
-                    <div style={styles.lessonInputGrid}>
+                    <div className="lesson-input-grid">
                       <input placeholder="Lesson title *" value={lf.title || ''} onChange={e => setLF(course._id, 'title', e.target.value)} style={styles.input} />
                       <input placeholder="Duration (e.g. 45 min)" value={lf.duration || ''} onChange={e => setLF(course._id, 'duration', e.target.value)} style={styles.input} />
                     </div>
@@ -323,7 +323,7 @@ export default function TeacherDashboard() {
         {courses.map(course => course.enrolledStudents?.length > 0 && (
           <div key={course._id} style={styles.studentSection}>
             <h3 style={styles.studentCourseTitle}>{course.title} <span style={styles.studentCount}>({course.enrolledStudents.length} students)</span></h3>
-            <div style={styles.studentGrid}>
+            <div className="student-grid">
               {course.enrolledStudents.map(s => (
                 <div key={s._id} style={styles.studentCard}>
                   <div style={styles.studentAvatar}>{s.name?.[0]?.toUpperCase()}</div>
