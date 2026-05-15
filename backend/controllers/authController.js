@@ -35,13 +35,16 @@ const login = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ message: 'Email and password required' });
 
+    const teacherEmail = process.env.TEACHER_EMAIL?.trim().toLowerCase();
+    const teacherPassword = process.env.TEACHER_PASSWORD?.trim();
+
     // Teacher login
-    if (email.toLowerCase() === process.env.TEACHER_EMAIL) {
-      if (password !== process.env.TEACHER_PASSWORD)
+    if (email.trim().toLowerCase() === teacherEmail) {
+      if (password.trim() !== teacherPassword)
         return res.status(401).json({ message: 'Invalid credentials' });
       return res.json({
         token: generateToken('teacher', 'teacher'),
-        user: { id: 'teacher', name: 'Priyanka Khinchi', email: process.env.TEACHER_EMAIL, role: 'teacher' }
+        user: { id: 'teacher', name: 'Priyanka Khinchi', email: teacherEmail, role: 'teacher' }
       });
     }
 
